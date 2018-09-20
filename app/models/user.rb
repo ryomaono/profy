@@ -11,15 +11,13 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>"}
   validates_attachment_content_type :avatar, content_type: ["image/jpg","image/jpeg","image/png"]
 
-  #association
-  belongs_to :group
-
   #validation
   before_validation :group_key_to_id, if: :has_group_key?
 
   #association
   belongs_to :group
   has_many :questions, ->{ order("created_at DESC") }
+  has_many :answers, ->{ order("updated_at DESC") }
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
