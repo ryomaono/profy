@@ -21,6 +21,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
     @answer.update(update_params)
+  end
 
   private
   def answer_params
@@ -34,6 +35,6 @@ class AnswersController < ApplicationController
   end
 
   def update_params
-    params.require.(:answer).permit(:text)
+    params.require(:answer).permit(:text)
   end
 end
