@@ -3,8 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   has_many :answers
-
-  #validation
+  has_one :feed_content, as: :content, dependent: :destroy
+   #validation
   validates_presence_of :user_id, :text, :group_id
 
   def user_answer(user_id)
