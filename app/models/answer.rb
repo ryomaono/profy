@@ -3,7 +3,7 @@ class Answer < ActiveRecord::Base
   after_create :create_feed_content
   #validaton
   validates_presence_of :user_id, :text
-
+  #association
   belongs_to :question
   belongs_to :user
   has_one :feed_content, as: :content, dependent: :destroy
