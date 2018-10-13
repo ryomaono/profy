@@ -1,6 +1,5 @@
 class Question < ActiveRecord::Base
-  #callback
-  after_create :create_feed_content
+
   #association
   belongs_to :user
   belongs_to :group
@@ -8,6 +7,8 @@ class Question < ActiveRecord::Base
   has_one :feed_content, as: :content, dependent: :destroy
    #validation
   validates_presence_of :user_id, :text, :group_id
+    #callback
+  after_create :create_feed_content
 
   def user_answer(user_id)
     Answer.find_by(user_id: user_id, question_id: id)
